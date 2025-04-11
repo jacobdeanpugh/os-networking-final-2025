@@ -1,4 +1,7 @@
 __pycache__
+.venv
 *.log
-*.sqlite
+database/*.sqlite
 quarantine/
+*.sqlite
+malware_tool/database/local_db.sqlite
