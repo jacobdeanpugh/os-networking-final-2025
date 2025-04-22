@@ -5,3 +5,5 @@ database/*.sqlite
 quarantine/
 *.sqlite
 malware_tool/database/local_db.sqlite
+malware_tool/database/local_db.sqlite-shm
+malware_tool/database/local_db.sqlite-wal
