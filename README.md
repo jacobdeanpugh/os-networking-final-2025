@@ -1,72 +1,75 @@
-# OS Networking Final Project 2025
-## Malware Detection and Removal System
+# Malware Detection and Removal Tool
 
-### Team Members:
-- **Member 1**: Jacob Pugh - jacobdean.pugh@calbaptist.edu
-- **Member 2**: Brandon Magana - brandon.magana@calbaptist.edu
+**Created by Jacob Pugh and Brandon Magana**
 
-### Platform:
-- **Operating System**: Windows 10/11
-- **Programming Language**: Python 3.10
-- **Execution**: Command Line Interface (CLI)
+---
 
-### Project Goals:
-Create a CLI tool that performs the following:
-- Detects a potential malware infection on a Windows system.
-- Quarantines the infected files.
-- Removes the infected files.
-- Provides a report of the actions taken.
+## Overview
 
-### Feature Plan:
+This project is a lightweight, modular command-line tool designed for **malware detection and removal**. It scans files, directories, and running processes for malicious activity, using a local SQLite database to manage scan histories, quarantines, and malware signatures.
 
-#### Detection:
-- Scan the system for known malware signatures.
-- Use Malwarebytes DB to identify potential threats.
-- Check for suspicious file behavior (e.g., unusual file access patterns, registry changes).
+---
 
-#### Quarantine:
-- Move infected files to a secure location to prevent further damage.
-- Startup Script Scanner: Check for suspicious startup scripts and remove them.
+## Key Features
 
-#### Removal:
-- Delete infected files from the quarantine location.
-- Remove any registry entries associated with the malware.
-- Remove any scheduled tasks associated with the malware.
-- Remove any network connections associated with the malware.
-- Remove any services associated with the malware.
-- Remove any drivers associated with the malware.
+- **Signature-Based File Scanning**  
+  Match file hashes against a malware signature database.
 
-#### Report:
-- Generate a report of the actions taken, including:
-    - List of detected malware.
-    - List of quarantined files.
-    - List of removed files.
-    - List of registry entries removed.
-    - List of scheduled tasks removed.
-    - List of network connections removed.
-    - List of services removed.
-    - List of drivers removed.
-- Recommendations for further action (e.g., system restore, antivirus scan).
+- **Process Hook Detection**  
+  Analyze running processes for signs of memory tampering.
 
-### File Structure:
+- **Historical File Size Anomaly Detection**  
+  Detect abnormal growth trends in file sizes over time.
+
+- **File Quarantine System**  
+  Securely isolate infected files in a quarantine folder.
+
+- **Scan Overview Reports**  
+  Generate clear reports showing scan results and malicious detections.
+
+- **Automatic Signature Updates**  
+  Pull the latest malware signatures from Malware Bazaar.
+
+---
+
+## Basic Usage
+
+- **Scan a file or directory:**
+  ```bash
+  python main.py scan path/to/file_or_directory
+  ```
+
+- **Scan running processes:**
+  ```bash
+  python main.py scan --process_scan
+  ```
+
+- **Update malware signatures:**
+  ```bash
+  python main.py update
+  ```
+
+- **Generate a scan report:**
+  ```bash
+  python main.py report path/to/report.txt
+  ```
+
+---
+
+## Structure
+
 ```
-malware_tool/
-│
-├── main.py               # Entry point
-├── scanner.py            # Custom hash scanner
-├── quarantine.py         # Move/remove suspicious files
-├── autorun_check.py      # SysInternals startup scan
-├── advisory.py           # Recommendations
-├── utils.py              # Logging, hashing, etc.
-├── hashes.db             # List of known malicious hashes
-├── quarantine/           # Encrypted/isolated storage for flagged files
-└── report.txt            # Output log
+├── main.py                 # CLI entry point
+├── database_handler.py      # Database management
+├── structs.py               # Dataclasses
+├── quarantine.py            # File quarantine logic
+├── utils.py                 # Utilities (hashing, logging)
+├── scanners/                # Different scanning modules
+└── database/                # SQL scripts and schema
 ```
 
-### Timeline:
-| Week         | Tasks                                                                 |
-|--------------|----------------------------------------------------------------------|
-| Week 1 (4/10–4/14) | Set up project repo, hash scanner, logging system                |
-| Week 2 (4/15–4/20) | Quarantine, removal, SysInternals integration                   |
-| Week 3 (4/21–4/24) | Advisory system, CLI polish, testing                            |
-| 4/25 (Deadline)    | Final test and submission                                       |
+---
+
+## About
+
+This tool was developed by **Jacob Pugh** and **Brandon Magana** as part of a cybersecurity final project, completed in April 2025.
