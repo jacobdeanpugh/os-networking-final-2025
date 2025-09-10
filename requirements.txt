@@ -2,3 +2,5 @@ requests
 tqdm
 psutil
 pefile
+numpy
+scipy
